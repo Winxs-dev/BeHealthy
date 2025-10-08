@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"> <!-- Define o padrão de caracteres (suporta acentos) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Deixa o site adaptável em celulares -->
+  <title>Login site</title> <!-- Título da aba do navegador -->
+
+<style>
+    /* ======== ESTILO GERAL DO SITE ======== */
+  body {
+      /* Define a fonte usada no site */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      /* Fundo com degradê azul horizontal */
+      background: linear-gradient(90deg, #0f0f3a, #1111f5);
+
+      /* Centraliza o card de cadastro no centro da tela */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 100vh; /* Ocupa toda a altura da tela */
+      margin: 0; /* Remove margens padrão */
+    }
+   /* ======== CARD DE LOGIN ======== */
+    .card {
+      border: 2px solid #2b7cff; /* Borda azul */
+      padding: 16px; /* Espaçamento interno */
+      width: 340px; /* Largura fixa */
+      border-radius: 8px; /* Cantos arredondados */
+      background: white; /* Fundo branco */
+      box-shadow: 3px 3px 10px rgba(0,0,0,0.2); /* Sombra leve para destacar */
+    }
+
+    /* ======== TÍTULO DO CARD ======== */
+    .card h2 {
+      text-align: center; /* Centraliza o texto */
+      margin-top: 0; /* Remove o espaço acima */
+      color: #2b7cff; /* Cor azul */
+    }
+
+    /* ======== LABELS (TEXTOS DOS CAMPOS) ======== */
+    label {
+      display: block; /* Cada label ocupa uma linha inteira */
+      margin-top: 10px; /* Espaçamento acima */
+      font-weight: bold; /* Deixa o texto em negrito */
+    }
+
+    /* ======== CAMPOS DE ENTRADA ======== */
+    input {
+      width: 100%; /* Ocupa toda a largura do card */
+      padding: 8px; /* Espaço interno */
+      margin-top: 4px; /* Pequeno espaço acima */
+      border: 1px solid #ccc; /* Borda cinza clara */
+      border-radius: 4px; /* Canto arredondado */
+      box-sizing: border-box; /* Inclui padding na largura total */
+    }
+
+    /* ======== ÁREA DOS BOTÕES ======== */
+    .actions {
+      margin-top: 16px; /* Espaçamento entre os botões e os campos */
+      display: flex; /* Deixa os botões lado a lado */
+      gap: 10px; /* Espaçamento entre os botões */
+      justify-content: space-between;
+    }
+
+    /* ======== ESTILO DOS BOTÕES ======== */
+    .actions input,
+    .actions button {
+      flex: 1; /* Ambos ocupam o mesmo tamanho */
+      padding: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* ======== BOTÃO DE LOGIN ======== */
+    .actions input {
+      background-color: #2b7cff; /* Azul */
+      color: white; /* Texto branco */
+    }
+
+    .actions input:hover {
+      background-color: #1e5edb; /* Azul mais escuro ao passar o mouse */
+    }
+
+    /* ======== BOTÃO DE LIMPAR ======== */
+    .actions button {
+      background-color: #f0f0f0; /* Cinza claro */
+    }
+
+    .actions button:hover {
+      background-color: #ddd; /* Escurece levemente no hover */
+    } 
+   
+</style>
+
+<script>
+    // ======== FUNÇÃO DE VALIDAÇÃO DO LOGIN ========
+    function validarFormulariologin(){
+        // Pega o valor dos campos de email e senha e remove espaços extras
+        let email = document.getElementById("email").value.trim();
+        let senha = document.getElementById("senha").value.trim();
+
+        // Verifica se os campos estão vazios
+        if (email === "" || senha === "" ) {
+            alert("Por favor, preencha todos os campos!");
+            return false; // Impede o login se houver campos vazios
+        }
+
+        // Recupera os dados salvos anteriormente no localStorage (do cadastro)
+        let emailSalvo = localStorage.getItem("usuarioEmail");
+        let senhaSalva = localStorage.getItem("usuarioSenha");
+
+        // Compara os valores digitados com os armazenados
+        if (email === emailSalvo && senha === senhaSalva) {
+            return true; // Login correto
+        } else {
+            alert("E-mail ou senha inválidos!");
+            return false; // Login incorreto
+        }
+    }
+
+    // ======== LIMPAR OS CAMPOS DO FORMULÁRIO ========
+    function limparFormulario() {
+        document.getElementById("formLogin").reset(); // Apaga tudo que foi digitado
+    }
+
+    // ======== ENVIAR O LOGIN ========
+    function enviarFormularioLogin() {
+        // Só executa o login se a validação for verdadeira
+        if (validarFormulariologin()){
+            alert("Login realizado com sucesso!");
+            // Redireciona para a página principal (menu.html)
+            window.location.href = "menu.html"; 
+        }
+    }
+
+</script>
+</head>
+
+<body>
+    <!-- ======== CARD CENTRAL COM FORMULÁRIO DE LOGIN ======== -->
+    <div class="card">
+        <h2>Login</h2>
+
+        <!-- O formulário não envia nada de verdade (onsubmit="return false") -->
+        <form id="formLogin" onsubmit="return false;">
+
+            <!-- Campo de E-mail -->
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email">
+
+            <!-- Campo de Senha -->
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="Senha">
+
+            <!-- Botões: Login e Limpar -->
+            <div class="actions">
+                <!-- Chama a função enviarFormularioLogin() -->
+                <input type="button" value="Login" onclick="enviarFormularioLogin()">
+                <!-- Chama a função limparFormulario() -->
+                <button type="button" onclick="limparFormulario()">Limpar</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

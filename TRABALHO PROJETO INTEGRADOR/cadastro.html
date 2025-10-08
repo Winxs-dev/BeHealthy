@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8"> <!-- Define a codificação de caracteres (permite acentos e cedilha) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Deixa o site responsivo em celulares -->
+  <title>Cadastro</title> <!-- Título que aparece na aba do navegador -->
+
+  <style>
+    /* ======== ESTILO GERAL ======== */
+    body {
+      /* Define a fonte usada no site */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+      /* Fundo com degradê azul horizontal */
+      background: linear-gradient(90deg, #0f0f3a, #1111f5);
+
+      /* Centraliza o card de cadastro no centro da tela */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      height: 100vh; /* Ocupa toda a altura da tela */
+      margin: 0; /* Remove margens padrão */
+    }
+
+    /* ======== CABEÇALHO ======== */
+    header {
+      /* Posiciona o cabeçalho fixo na parte superior e centralizado */
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .logo {
+      /* Alinha imagem e texto lado a lado */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      font-weight: bold;
+      color: #ffeb3b; /* Amarelo vibrante */
+    }
+
+    .logo img {
+      width: 55px;
+      margin-right: 10px;
+      border-radius: 50%; /* Deixa a imagem circular */
+      border: 3px solid #ffeb3b; /* Borda amarela */
+      box-shadow: 0 0 10px #ffeb3b; /* Brilho ao redor da logo */
+    }
+
+    /* ======== CARD ======== */
+    .card {
+      background: #fff; /* Fundo branco */
+      padding: 28px; /* Espaçamento interno */
+      width: 360px; /* Largura fixa */
+      border-radius: 15px; /* Cantos arredondados */
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3); /* Sombra para dar profundidade */
+      text-align: center;
+      animation: fadeIn 1s ease-in-out; /* Animação de entrada */
+    }
+
+    h2 {
+      color: #2b7cff; /* Azul do título */
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block; /* Faz o label ocupar toda a linha */
+      margin-top: 12px;
+      font-weight: 600; /* Negrito leve */
+      color: #333;
+      text-align: left; /* Alinha o texto à esquerda */
+    }
+
+    input {
+      width: 100%; /* Ocupa toda a largura do card */
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: 0.3s; /* Suaviza a mudança ao focar */
+    }
+
+    input:focus {
+      border-color: #2b7cff; /* Borda azul ao clicar */
+      outline: none; /* Remove o contorno padrão */
+      box-shadow: 0 0 6px rgba(43,124,255,0.4); /* Efeito de brilho */
+    }
+
+    .btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #2b7cff, #1e5edb); /* Gradiente azul */
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      /* Quando o mouse passa por cima */
+      background: linear-gradient(90deg, #1e5edb, #0c47b5);
+      transform: scale(1.05); /* Leve aumento no tamanho */
+      box-shadow: 0 5px 15px rgba(43,124,255,0.4); /* Brilho */
+    }
+
+    /* ======== ANIMAÇÃO DE ENTRADA ======== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ======== RODAPÉ ======== */
+    footer {
+      position: absolute;
+      bottom: 15px; /* Fixa na parte inferior */
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+
+  <script>
+    // Função chamada ao clicar no botão "Cadastrar"
+    function cadastrarUsuario() {
+        // Captura os valores dos campos e remove espaços extras
+        let nome = document.getElementById("nome").value.trim();
+        let idade = document.getElementById("idade").value.trim();
+        let email = document.getElementById("email").value.trim();
+        let senha = document.getElementById("senha").value.trim();
+
+        // Verifica se algum campo está vazio
+        if (nome === "" || idade === "" || email === "" || senha === "") {
+            alert("Preencha todos os campos!");
+            return; // Sai da função se estiver faltando algo
+        }
+
+        // Armazena os dados no navegador (localStorage)
+        // Obs: isso é apenas para teste — não é seguro guardar senhas assim!
+        localStorage.setItem("usuarioNome", nome);
+        localStorage.setItem("usuarioIdade", idade);
+        localStorage.setItem("usuarioEmail", email);
+        localStorage.setItem("usuarioSenha", senha);
+
+        alert("Cadastro realizado com sucesso!");
+
+        // Após salvar, redireciona para outra página (questionário)
+        window.location.href = "questionario.html";
+    }
+  </script>
+</head>
+
+<body>
+  <!-- ======== CABEÇALHO COM LOGO ======== -->
+  <header>
+    <div class="logo">
+      <img src="logo.jpg" alt="logo"> <!-- Ícone circular -->
+      Saúde & Bem-Estar
+    </div>
+  </header>
+
+  <!-- ======== CARD DE CADASTRO ======== -->
+  <div class="card">
+    <h2>Cadastro</h2>
+
+    <!-- Campo de Nome -->
+    <label for="nome">Nome</label>
+    <input type="text" id="nome">
+
+    <!-- Campo de Idade -->
+    <label for="idade">Idade</label>
+    <input type="number" id="idade" min="1">
+
+    <!-- Campo de Email -->
+    <label for="email">E-mail</label>
+    <input type="email" id="email">
+
+    <!-- Campo de Senha -->
+    <label for="senha">Senha</label>
+    <input type="password" id="senha">
+
+    <!-- Botão que executa a função cadastrarUsuario() -->
+    <button class="btn" onclick="cadastrarUsuario()">Cadastrar</button>
+  </div>
+
+  <!-- ======== RODAPÉ ======== -->
+  <footer>
+    &copy; 2025 - Saúde e Bem-Estar | Todos os direitos reservados.
+  </footer>
+</body>
+</html>
