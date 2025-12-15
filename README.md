@@ -1,4 +1,4 @@
-# BeHealthy 💧🏃‍♂️
+# BeHealthy 
 
 Um web app simples e responsivo para ajudar a manter hábitos saudáveis.
 
