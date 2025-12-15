@@ -18,10 +18,16 @@ Estrutura
 textbehealthy-oficial/
 
 ├── index.html
+
 ├── beber.html
+
 ├── receitas.html
+
 ├── css/     → estilos
+
 ├── js/      → scripts (inclui Firebase e lógica principal)
+
 ├── images/  → imagens
+
 └── README.md
 
