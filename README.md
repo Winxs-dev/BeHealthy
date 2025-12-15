@@ -23,3 +23,4 @@ textbehealthy-oficial/
 ├── js/      → scripts (inclui Firebase e lógica principal)
 ├── images/  → imagens
 └── README.md
+
